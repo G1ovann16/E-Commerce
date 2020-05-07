@@ -5,8 +5,8 @@ const app = express();
 const PORT = 3001;
 const usersRouter = require('./routes/user.js');
 const productsRouter = require('./routes/product.js');
-
-mongoose.connect('mongodb://localhost:27017/e-comerce-MERN', {
+//#region no entiendo
+mongoose.connect('mongodb://localhost:27017/E-Comerce', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
@@ -20,6 +20,7 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     next();
 });
+//#endregion
 app.use(express.json());
 app.use(morgan('dev'));
 app.use('/users', usersRouter);

@@ -23,7 +23,7 @@ const authentication = async(req, res, next) => {
             })
         }
     }
-    //esta función devuelve un middleware en base a los roles que permite la array roles
+    // un middleware que devuelve los roles en un array de roles
 const is = (roles) => async(req, res, next) => {
     if (!roles.includes(req.user.role)) {
         return res.status(403).send({

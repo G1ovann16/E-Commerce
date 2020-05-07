@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const UserController = require('../controller/UserController.js');
 const { authentication, is } = require('../middleware/authentication.js')
+
 router.post('/signup', UserController.signup);
 router.post('/login', UserController.login);
 router.get('/info', authentication, UserController.getUserInfo);

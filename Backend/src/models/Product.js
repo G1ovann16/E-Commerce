@@ -1,11 +1,15 @@
 const mongoose = require('mongoose');
 const ObjectId = mongoose.SchemaTypes.ObjectId;
 const ProductSchema = new mongoose.Schema({
-    name: {
+    make: {
         type: String,
         required: [true, 'El campo nombre es requerido']
     },
     description: {
+        type: String,
+        required: [true, 'El campo descripción es requerido']
+    },
+    frameMaterial : {
         type: String,
         required: [true, 'El campo descripción es requerido']
     },

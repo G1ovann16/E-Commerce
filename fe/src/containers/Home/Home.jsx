@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { API_URL } from '../../api-config';
 import axios from 'axios';
 import './Home.scss'
-import Product from '../../components/Product/Product';
+import Product from '../../components/Products/Products';
 const Home = () => {
     const [products, setProducts] = useState([])
     useEffect(() => {

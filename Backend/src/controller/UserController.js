@@ -9,14 +9,14 @@ const UserController = {
     },
     async signup(req, res) {
         try {
-            const hash = await bcrypt.hash(req.body.password, 9); //generamos hash a partir de la contraseña
-            req.body.password = hash; //sobreescribimos la propiedad password con el hash obtenido
+            const hash = await bcrypt.hash(req.body.password, 9); 
+            req.body.password = hash; 
             req.body.role = "user";
-            const user = await UserModel.create(req.body); //creamos el usuario a partir del email y el hash suministrados en mongoDB
+            const user = await UserModel.create(req.body); 
             res.status(201).send({
                 message: 'User successfully created',
                 user
-            }); //enviamos la respuesta con el objeto user
+            });
         } catch (error) {
             console.error(error);
             res.status(500).send({
@@ -26,7 +26,8 @@ const UserController = {
     },
     async login(req, res) {
         try {
-            const user = await UserModel.findOne({ //buscamos el usuario por el email, ej: 'user@email.com'
+            const user = await UserModel.findOne({
+                 //buscamos el usuario por el email, ej: 'user@email.com'
                 email: req.body.email
             });
             if (!user) {
