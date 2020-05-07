@@ -1,16 +1,27 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const morgan = require('morgan');
-const cors = require('cors');
-const PORT = process.env.PORT || 3000;
 const app = express();
+const PORT = 3001;
+const usersRouter = require('./routes/user.js');
+const productsRouter = require('./routes/product.js');
 
-
-
-require('./database');
-app.use(express.json())
-app.use(require('./routes/index'));
-
-app.set('port', PORT)
-app.listen(PORT, ()=> {
-    console.log('Server on Port', PORT)
+mongoose.connect('mongodb://localhost:27017/e-comerce-MERN', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false
+    })
+    .then(() => console.log('Successfully connected to MongoDB'))
+    .catch(console.error);
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,authorization");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    next();
 });
+app.use(express.json());
+app.use(morgan('dev'));
+app.use('/users', usersRouter);
+app.use('/products', productsRouter);
+app.listen(PORT, () => console.log('server running on port ' + PORT));
