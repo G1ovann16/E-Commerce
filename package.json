@@ -1,0 +1,24 @@
+{
+    "name": "login-full-stack",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "concurrently \"cd backend && nodemon app.js \"  \"cd fe && npm start \"",
+        "postinstall": "concurrently \"cd backend && npm i \"  \"cd fe && npm i \""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/G1ovann16/E-Commerce"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/G1ovann16/E-Commerce"
+    },
+    "homepage": "https://github.com/G1ovann16/E-Commerce",
+    "devDependencies": {
+        "concurrently": "^5.1.0"
+    }
+}

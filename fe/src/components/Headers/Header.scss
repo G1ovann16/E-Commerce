@@ -1,0 +1,18 @@
+@import '../../colors.scss';
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: $darkblue;
+    color: $white;
+    .guestZone {
+        display: flex;
+    }
+    a {
+        all: unset;
+        padding: 0.8em;
+        cursor: pointer;
+        &.active {
+            background-color: $lightblue;
+        }
+    }
+}

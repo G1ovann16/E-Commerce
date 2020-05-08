@@ -1,0 +1,10 @@
+@import '../../../colors.scss';
+.loginContainer {
+    padding: 1.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    label {
+        color: $white;
+    }
+}

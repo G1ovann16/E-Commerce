@@ -1,0 +1,15 @@
+.products {
+    display: grid;
+    grid-template: repeat(3, 1fr)/repeat(3, 1fr);
+    .product {
+        display: inline-flex;
+        cursor: pointer;
+        flex-direction: column;
+        padding: 0.5em;
+        justify-content: space-between;
+        align-items: center;
+        img {
+            max-width: 80%;
+        }
+    }
+}
