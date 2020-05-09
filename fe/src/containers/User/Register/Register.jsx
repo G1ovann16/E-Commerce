@@ -52,7 +52,7 @@ const Register = () => {
 
                 <Form.Item {...tailLayout}>
                     <Button type="primary" htmlType="submit">
-                        Darse de alta
+                      REGISTER AN ACCOUNT
           </Button>
                 </Form.Item>
             </Form>

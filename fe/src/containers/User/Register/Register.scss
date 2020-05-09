@@ -5,6 +5,16 @@
     justify-content: center;
     align-items: center;
     label {
-        color: $white;
+        color: $brown;
+    }
+    Button {
+        background-color: $brown;
+        color: $darkyellow;
+        &:hover{
+            padding: 0 1em 0 1em ;
+            background-color: $darkyellow;
+            color: $lightyellow;
+        }
+
     }
 }

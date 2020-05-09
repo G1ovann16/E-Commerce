@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "concurrently \"cd backend && nodemon app.js \"  \"cd fe && npm start \"",
+        "start": "concurrently \"cd backend && npm start \"  \"cd fe && npm start \"",
         "postinstall": "concurrently \"cd backend && npm i \"  \"cd fe && npm i \""
     },
     "repository": {

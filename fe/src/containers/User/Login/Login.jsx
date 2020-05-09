@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form, Input, Button, notification } from 'antd';
-import './Login.scss';
+import './Login.scss' 
 import axios from 'axios';
 import { API_URL } from '../../../api-config';
 import { useHistory } from 'react-router-dom';
@@ -23,7 +23,7 @@ const Login = () => {
             .catch(console.error)
     };
     return (
-        <div className="loginContainer">
+        <div className="login container">
             <Form
                 className="loginForm"
                 {...layout}
@@ -49,7 +49,7 @@ const Login = () => {
 
                 <Form.Item {...tailLayout}>
                     <Button type="primary" htmlType="submit">
-                        Conectarse
+                        Login
           </Button>
                 </Form.Item>
             </Form>
