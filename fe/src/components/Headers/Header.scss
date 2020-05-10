@@ -4,7 +4,12 @@
     justify-content: space-between;
     background-color: $lightyellow;
     color: $brown;
+    .homeB{
+        justify-content: center;
+        margin: 1em 0 2em 8em;
+    }
     .guestZone {
+        margin: 0 8em 2em 0;
         display: flex;
     }
     a {

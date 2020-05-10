@@ -33,6 +33,30 @@ const Shop = () => {
               </Button>
                </div>
           </div> 
+          <ul className="NavTop">
+            <li className="display">
+              <h3>DOG</h3>
+                <li><h4>FOOD</h4></li>
+                <li><h4>ACCESSORIES</h4></li>
+                <li><h4>HELP</h4></li>
+            </li>
+            <li>
+              <h3>BRAND</h3>
+              <div className="col-8 searchBrand">
+            <Search
+                 placeholder="input search text"
+                 enterButton="Search"
+                 size="short"
+                 onSearch={value => console.log(value)}
+                  />
+                <br />
+                <br />
+                </div>
+            </li>
+            <li><h3>OFERTS</h3></li>
+            <li><h3>SERVICES</h3></li>
+            <li><h3>BLOG</h3></li>
+          </ul>
             <Carousel autoplay>
               <div>
                 <h3>1</h3>

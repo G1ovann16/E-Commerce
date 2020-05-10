@@ -64,3 +64,26 @@
        margin-bottom: 0em;
     }
  }
+.NavTop{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style-type: none;
+    cursor: pointer;
+    .display > li {
+        color: $brown;
+        display: none;
+    }
+    .searchBrand{
+          display: none;
+        Button {
+            background-color: $brown;
+            color: $darkyellow;
+            &:hover{
+                padding: 0 1em 0 1em ;
+                background-color: $darkyellow;
+                color: $lightyellow;
+            }
+        }
+    }
+}
