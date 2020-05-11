@@ -74,6 +74,9 @@ const Shop = () => {
         {/* <div className="produ">
             {products.map(product => <Product key={product._id} product={product}/>)}
          </div> */}
+         <div className="produc">
+           <img src="" alt=""/>
+         </div>
           </div> 
     )
 }

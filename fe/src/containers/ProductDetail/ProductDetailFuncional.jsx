@@ -7,7 +7,7 @@ const ProductDetailFuncional = props => {
     const [product, setProduct] = useState({})
     const { _id } = useParams();//extraemos el parámetro _id de la ruta (ActivatedRoute para recoger params)
     useEffect(() => {
-        axios.get(API_URL + '/products/' + _id)//hacemos la petición para obtener ese producto en detalle
+        axios.get(API_URL + '/product/' + _id)//hacemos la petición para obtener ese producto en detalle
             .then(res => setProduct(res.data))//actualizamos el estado acorde a la respuesta del servi
     }, []);
     return (<div className="product">
