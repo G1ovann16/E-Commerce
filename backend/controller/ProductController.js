@@ -5,23 +5,20 @@ const ProductController = {
     
     getAll(req, res) {
         Product.find() //include equivalent
-            .then(products => res.status(300).send(products))
+            .then(products => res.status(200).send(products))
             .catch(error => {
                 console.error(error);
                 res.send(error)
       })
     },
 
-      async getProdRec(req, res) {
+       getRec(req, res) {
         console.log("hola")
-        try {
-            const productR = await Product.find({"createdAt" : {"$gte": new Date("2020-05-01T00:00:00.000Z")}})
-            res.send(productR)
-        } catch (error) {
-            
-            console.error(error);
+         Product.find({"createdAt" : {"$gte": new Date("2020-05-01T00:00:00.000Z")}})
+        .then(products => res.status(200).send(products))
+         .catch(error =>{ 
             res.send(error)
-        }
+        })
     },
     
 
