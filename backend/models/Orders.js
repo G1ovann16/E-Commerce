@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const ObjectId = mongoose.SchemaTypes.ObjectId;
 const OrdersSchema = new mongoose.Schema({
+   
     status: {
         type: String,
         // required:[true, 'El campo nombre es requerido']
@@ -19,10 +20,11 @@ const OrdersSchema = new mongoose.Schema({
     productIds: [{
         _id:{
             type: ObjectId,
-            ref: 'Product',
+            ref: 'Product'
         },
         unit: Number,
-        subtotal: Number
+        subtotal: Number,
+        name: String,
     }],
 });
 
