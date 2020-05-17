@@ -1,0 +1,22 @@
+@import '../../colors.scss';
+.container {
+img{
+    height: 200px;
+}
+.date{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+}
+Button {
+    background-color: $brown;
+    color: $darkyellow;
+    &:hover{
+        padding: 0 1em 0 1em ;
+        background-color: $darkyellow;
+        color: $lightyellow;
+    }
+
+}
