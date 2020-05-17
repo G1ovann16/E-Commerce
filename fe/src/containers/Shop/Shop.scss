@@ -7,6 +7,7 @@
         cursor: pointer;
         flex-direction: column;
         padding: 0.5em;
+        margin: 0 2em 0 2em;
         justify-content: space-between;
         align-items: center;
         img {
@@ -72,7 +73,7 @@
     cursor: pointer;
     .display > li {
         color: $brown;
-        // display: none;
+        display: none;
     }
     .searchBrand{
           display: none;

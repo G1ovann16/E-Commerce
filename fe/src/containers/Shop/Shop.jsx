@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Carousel, Input, Radio } from 'antd';
 import { connect } from "react-redux";
+import {  productsAll, productsRecently  } from '../../redux/actions/products';
 import './Shop.scss'
 import Product from '../../components/Products/Products';
 
@@ -9,22 +10,21 @@ const Shop = (props) => {
   const [search,  setSearch] = useState('')
   const [valueRadio,  setValueRadio] = useState(0)
   useEffect(() => {
+    productsRecently()
     let value = '';
-  })
+  },[])
 
   function handleRadio(e){
     console.log(props.productsRec)
-    // console.log('radio checked', e.target.value,valueRadio);
     setValueRadio(e.target.value)
-      // console.log(props.products)
-      if ((e.target.value) == 1) {
-        props.products.sort((a, b) => a.price - b.price)
-        console.log(props.products,'menor')
-      }
-      else if((e.target.value) == 2) {
-        props.products.sort((a, b) => b.price - a.price)
-        console.log(props.products,'mayor')
-      }
+      // if ((e.target.value) == 1) {
+      //   props.products.sort((a, b) => a.price - b.price)
+      //   console.log(props.products,'menor')
+      // }
+      // else if((e.target.value) == 2) {
+      //   props.products.sort((a, b) => b.price - a.price)
+      //   console.log(props.products,'mayor')
+      // }
     
   }
 
@@ -77,9 +77,9 @@ const Shop = (props) => {
         <h3>BLOG</h3>
       </ul>
       <Carousel autoplay>
-          {(props.productsRec).map(product =><div><img src={product.image_path[0]} alt=""/> </div>)}
+          {(props.productsRec)?.map(product =><div><img src={product.image_path[0]} alt=""/> </div>)}
        </Carousel>
-      <div className="produ">
+      <div className="products">
         {props.products?.filter(product=>search ? product.name.includes(search):true)?.map(product => <Product key={product._id} product={product} />)}
       </div>
     </div>
