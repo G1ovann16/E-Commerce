@@ -1,17 +1,22 @@
-const UserModel = require('../models/User.js');
+const UserModel = require('../models/Users');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 // const transporter = require('../config/nodemailer')
 const UserController = {
-    getAll(req, res) {
-        UserModel.find({})
-            .then(users => res.send(users))
+    async getAll(req,res){
+        try {
+            const users = await UsuarioModel.find();
+            res.send(users);
+        } catch (error) {
+            res.status(500).send('imposible listar')
+        }
     },
     async signup(req, res) {
         try {
+            console.log('aqui', req.body)
+            req.body.role = 'user';
             const hash = await bcrypt.hash(req.body.password, 9); 
             req.body.password = hash; 
-            req.body.role = "user";
             const user = await UserModel.create(req.body); 
             res.status(201).send({
                 message: 'User successfully created',
@@ -62,6 +67,7 @@ const UserController = {
         }
     },
     getUserInfo(req, res) {
+        console.log(req.body, req.user)
         res.send(req.user)
     },
     logout(req, res) {

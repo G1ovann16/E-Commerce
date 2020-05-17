@@ -3,13 +3,13 @@
 .wrap{
     width: 100%;
     max-height: 30%;
-    position: absolute;
-    bottom: 4px;
+    // bottom: 4px;
     background-color: $lightyellow;
     color: $brown;
     .top{
-        width: 60%;
+        // width: 100%;
         display: flex;
+        height: 9em;
         flex-direction: row;
         justify-content: center;
         justify-content: space-around;
@@ -19,7 +19,9 @@
         cursor: pointer;
     }
     .buttom{
-        margin-top:8em;
+        // margin-top:8em;
+        position: absolute;
+        height: 2em;
         background-color: $white;
         display: flex;
         width: 100%;

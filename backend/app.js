@@ -1,32 +1,40 @@
-const createError = require('http-errors');
 const path = require('path');
 // const cookieParser = require('cookie-parser');
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const config = require("./config/key");
 
+mongoose.connect(config.mongoURI,
+  {
+    useNewUrlParser: true, useUnifiedTopology: true,
+    useCreateIndex: true, useFindAndModify: false
+  })
+  .then(() => console.log('MongoDB Connected...'))
+  .catch(err => console.log(err));
 
-mongoose.connect('mongodb://localhost:27017/shop',{useNewUrlParser: true, useUnifiedTopology: true});
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  console.log('Conexion exitosa')
-});
+const OrderRoutes = require('./routes/orders');
+const UserRoutes = require('./routes/users');
+const ProductsRoutes = require('./routes/product');
 
-// var indexRouter = require('./routes/index');
+const app = express();
 
-var app = express();
+app.use(express.json());
+
 
 app.use(cors());
 app.use(morgan('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));//no se para q
 // app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'))); //no se para q
 
-// app.use('/', indexRouter);
-// app.use('/bicicletas', bicisRouter);
+app.use('/order', OrderRoutes);
+app.use('/product', ProductsRoutes);
+app.use('/users', UserRoutes);
 
+const port = process.env.PORT || 3001;
 
-module.exports = app;
+app.listen(port, () => {
+  console.log(`Server Listening on ${port}`)
+});

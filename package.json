@@ -19,6 +19,11 @@
     },
     "homepage": "https://github.com/G1ovann16/E-Commerce",
     "devDependencies": {
-        "concurrently": "^5.1.0"
+        "concurrently": "^5.1.0",
+        "redux-devtools": "^3.5.0"
+    },
+    "dependencies": {
+        "react-redux": "^7.2.0",
+        "redux": "^4.0.5"
     }
 }

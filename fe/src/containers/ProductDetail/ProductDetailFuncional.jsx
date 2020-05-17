@@ -1,23 +1,60 @@
 import React, { Component, Fragment, useState, useEffect } from 'react'
-import axios from "axios";
-import { API_URL } from '../../api-config';
 import './ProductDetail.scss'
-import { useParams } from 'react-router-dom';
+import {  Button } from 'antd';
+import { useParams, NavLink } from 'react-router-dom';
+import Product from '../../components/Products/Products';
+import { connect } from "react-redux";
+import { addCart } from "../../redux/actions/ShopCar"; 
 const ProductDetailFuncional = props => {
-    const [product, setProduct] = useState({})
+    let productoactual ={};
+    let checkactual ={};
+    const [active,  setActive] = useState(false)
     const { _id } = useParams();//extraemos el parámetro _id de la ruta (ActivatedRoute para recoger params)
     useEffect(() => {
-        axios.get(API_URL + '/product/' + _id)//hacemos la petición para obtener ese producto en detalle
-            .then(res => setProduct(res.data))//actualizamos el estado acorde a la respuesta del servi
-    }, []);
+        console.log(active, props.products)
+        console.log(props.product_cart)
+
+        check()
+    })   
+      productoactual = (props.products)?.find(product => product._id === _id)
+      checkactual = (props.product_cart)?.find(product => product._id === productoactual._id)
+   
+    function check() {
+        (checkactual ? setActive(true) : setActive(false))
+        console.log(active);
+    }
+
+
+    function addProductoToCart(productoactual){
+       productoactual.unit = productoactual.unit? productoactual.unit + 1 : 1;
+    //    productoactual.active = true;
+        addCart(productoactual);
+        console.log(active);
+        setActive(true)
+        console.log(active);
+    } 
+
+//for (let i = 0; i < props.products?.length; i++) {
+//     console.log(props.products?.length)
+//     if(props.products[i]._id === _id ){
+//         productoactual = props.products[i];
+//         break;
+//     }
+// }
     return (<div className="product">
-        <img src={product.image_path} alt="" />
+  
+        
+        <img src={productoactual?.image_path} alt="" />
         <div className="detail">
-            <span>{product.price}€</span>
-            <span>{product.stock} unidades</span>
-            <span>{product.name}</span>
-            <span>{product.description}</span>
+            <span>{productoactual?.price}€</span>
+            <span>{productoactual?.stock} unidades</span>
+            <span>{productoactual?.name}</span>
+            <span>{productoactual?.description}</span>
         </div>
+        <Button type="primary" disabled={active} onClick={()=>{addProductoToCart(productoactual)}} htmlType="submit">
+        <NavLink to="/cesta" exact>AddCar</NavLink>
+        </Button>
     </div> )
 }
-export default ProductDetailFuncional;
+const mapStateToProps = (state) => ({ products: state.products, product_cart: state.product_cart  })
+export default connect(mapStateToProps)(ProductDetailFuncional);

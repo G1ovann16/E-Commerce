@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const UserController = require('../controller/UserController.js');
-const { authentication, is } = require('../middleware/authentication.js')
+const { authentication, is } = require('../midleware/authentication');
 
-router.post('/signup', UserController.signup);
+router.post('/signup',UserController.signup);
 router.post('/login', UserController.login);
-router.get('/info', authentication, UserController.getUserInfo);
+router.get('/info', UserController.getUserInfo);
 router.get('/recover/:email', UserController.recover);
 router.post('/reset', UserController.resetPassword);
 router.put('/', authentication, UserController.update);

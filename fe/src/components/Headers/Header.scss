@@ -4,6 +4,7 @@
     justify-content: space-between;
     background-color: $lightyellow;
     color: $brown;
+    max-height: 3em;
     .homeB{
         justify-content: center;
         margin: 1em 0 2em 8em;
@@ -11,6 +12,18 @@
     .guestZone {
         margin: 0 8em 2em 0;
         display: flex;
+    }
+    .userZone{
+        margin: 1em 8em 2em 0;
+        Button {
+            background-color: $brown;
+            color: $darkyellow;
+            margin-left: 1em;
+            &:hover{
+                background-color: $darkyellow;
+                color: $lightyellow;
+            }
+        }
     }
     a {
         all: unset;

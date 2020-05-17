@@ -3,26 +3,28 @@ const ObjectId = mongoose.SchemaTypes.ObjectId;
 const OrdersSchema = new mongoose.Schema({
     status: {
         type: String,
-        required:[true, 'El campo nombre es reqiuererido']
-    },
-    description: {
-        type: String,
-        required:[true, 'El campo nombre es reqiuererido']
-    },
+        // required:[true, 'El campo nombre es requerido']
+    }, 
     price:{
         type: Number,
-        required:[true, 'El campo nombre es reqiuererido']
-    },
-    imagen: {
-        type: String,
-        required:[true, 'El campo nombre es reqiuererido']
+        // required:[true, 'El campo nombre es requerido']
     },
     stock:{
         type: Number,
-        required:[true, 'El campo nombre es reqiuererido']
+        // required:[true, 'El campo nombre es requerido']
     },
-    ordersIds:[ObjectId]
+    deliveryDate: Date,
+    UserId: String,
+    // total??
+    productIds: [{
+        _id:{
+            type: ObjectId,
+            ref: 'Product',
+        },
+        unit: Number,
+        subtotal: Number
+    }],
 });
 
 const Orders= mongoose.model('Orders', OrdersSchema);
-module.exports = OrdersModel;
+module.exports = Orders;

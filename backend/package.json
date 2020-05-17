@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "dev": "concurrently \"npm start\" \"npm start --prefix client\""
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
