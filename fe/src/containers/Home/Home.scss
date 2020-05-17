@@ -16,10 +16,16 @@
 }
 .ant-carousel .slick-slide {
     text-align: center;
-    height: 160px;
-    line-height: 160px;
+    height: 60em;
+    line-height: 60em;
     background: #364d79;
     overflow: hidden;
+  }
+  .carru{
+      height: 20em;
+      img{
+        height: 20em;
+      }
   }
   
   .ant-carousel .slick-slide h3 {

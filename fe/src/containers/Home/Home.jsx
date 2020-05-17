@@ -1,40 +1,44 @@
 import React, { useEffect, useState } from 'react'
-// import { API_URL } from '../../api-config';
-// import axios from 'axios';
+import { connect } from "react-redux";
 import { Carousel, Input, Button } from 'antd';
 import './Home.scss'
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { productsAll, productsRecently  } from '../../redux/actions/products';
 import Product from '../../components/Products/Products';
-// import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-// import shp from '../Shop/Shop'; 
-//import store from "../../redux/store";
-// import { rdx_nombresResultado } from "../../redux/actions/products";
+
 
 const Home = (props) => {
+  useEffect(() => {
+    productsAll()
+    productsRecently()
+
+}, [])
 
     const { Search } = Input; 
-    useEffect(() => {
-      productsAll()
-      productsRecently()
-  }, [])
 
     return (
         <div className="Home">
      
-            <Carousel autoplay>
+            <Carousel autoplay className="carru">
               <div>
-                <h3> 1 </h3>
+                <h3> 
+                  <img src="https://puppis.vteximg.com.br/arquivos/ids/171119/2005%20Alimento%20Humedo%20Banner%20Web%20Desktop.png?v=637244937127800000" alt=""/> 
+              </h3>
               </div>
               <div>
-                <h3>2</h3>
+                <h3>
+                <img src="https://puppis.vteximg.com.br/arquivos/ids/171122/2005%20Banner-Website-Desktop--Descanso-Wepets-D.png?v=637246611403930000" alt=""/> 
+                </h3>
               </div>
               <div>
-                <h3>3</h3>
+                <h3>
+                <img src="https://puppis.vteximg.com.br/arquivos/ids/171115/Website%20Banner%20Desktop%20Exclusivo%20Online%20PIEDRITAS_WEB.png?v=637244673614430000" alt=""/>
+                </h3>
               </div>
               <div>
-                <h3>4</h3>
+                <h3>
+                <img src="https://puppis.vteximg.com.br/arquivos/ids/171102/Web-Banner-Desktop-Puppis-One-.jpg?v=637244110302300000" alt=""/>
+                </h3>
               </div>
             </Carousel>
            <div className="products">
