@@ -21,8 +21,9 @@ export const subCantCart = (id) => {
     });
 }
 
-export const buy = async(productId) => {
-    const res = await axios.post(API_URL + '/order', {productId}, {
+export const buy = async(productIds) => {
+    console.log(productIds)
+    const res = await axios.post(API_URL + '/order', {productIds}, {
         headers: {
             Authorization: localStorage.getItem('authToken')
         }
@@ -31,6 +32,7 @@ export const buy = async(productId) => {
         type: 'BUY',
         payload: res.data
     });
+    console.log(res.data)
     emptyCart()
 }
   // CLEAR CARRITO

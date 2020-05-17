@@ -2,13 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Col, Card, Button, InputNumber } from 'antd';
 import { addCantCart, subCantCart, clearOneProduct, buy } from "../../redux/actions/ShopCar"; 
-
-// import { ShoppingCartOutlined } from '@ant-design/icons';
 import './Products.scss'
+import { productsAll, productsRecently  } from '../../redux/actions/products';
 import { clear } from 'redux-localstorage-simple';
-// const { _id } = useParams();//extraemos el parámetro _id de la ruta (ActivatedRoute para recoger params)
 const Product = ({ product, showInput }) => {
 const [total,  setTotal] = useState(product?.price*product.unit) 
+
+useEffect(() => {
+   productsAll()
+   // productsRecently()
+
+}, [])
 
 function addValue(value) {
    setTotal((value+1)*product?.price)

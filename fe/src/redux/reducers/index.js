@@ -58,7 +58,7 @@ const reducer = (state = {product_cart: [] }, action) => {
             case 'BUY':
                 return {
                     ...state,
-                    compra: action.payload
+                    compra: action.payload,
                 }
         default:
             return state;
