@@ -12,46 +12,48 @@ _-Se necesitaría un dispositivo conectado a internet y que contenga una memoria
 _Debes prescindir de una cuenta de mail para proceder al registro y asi obtener la posibilidad de adquirir el producto deseado_
 ### Código a destacar
 ``` 
- getPedidos(){
-    const token = localStorage.getItem('authToken');
-    this.userService.getPedidosUser(this.userService.getId(), token)
-    .subscribe((res: any) => {
-        this.pedidosList = res;
-        this.idMovie = this.pedidosList[0].Pedidos[0].PeliculaId;
-        this.getMoviePedidos();
-   },
-   (error: HttpErrorResponse) => {
-     console.error(error);
-     this.notification.error('Wrong order id', 'There was a problem trying to get orders');
-   });
+   {props.user ?
+       <div className="userZone">
+          <span>{props.user.email}</span>
+             <NavLink to="/" onClick={logout} >Logout</NavLink>
+             <NavLink to="/cesta" exact>
+                 <div className="col-8 carrito">
+                     <Button 
+                        type="primary" icon={<ShoppingCartOutlined />}>
+                           <p>Quantity  {cantUnit}</p>  
+                           <p>Total  {resultado} $</p>
+                      </Button>
+                 </div>         
+              </NavLink>
+       </div> 
+                :
+       <div className="guestZone">
+         <NavLink to="/login" exact>Login</NavLink>
+         <NavLink to="/register" exact>Register</NavLink>
+       </div>
  }
  
 ``` 
-_En este pequeño código se obtendrá los pedidos realizado por el usuario. obteniendo de localstorage su autentificación correspondiente. Al obtener el id de su pedido, corresponde identificar que pelicula tiene en ese pedido para asi mostrar los resultados de la misma ._
+_En este pequeño código se analiza lo que se desea mostrar al usuario dentro de un ternario, que bien puede ser  el carrito de la compra y logout o la posibilidad de que se registre y se de de alta y asi pueda proceder a relizar la compra._
+
+### Redux
 ```
-deleteGenre(i: number){
-  const token = localStorage.getItem('authToken');
-  this.movieService.deleteGenre(this.listGenre[i].id, token)
-  .subscribe(
-    genre => {
-      this.getAllGenre();
-  },
-   err => console.log(err)
-  );
+export const buy = async(productIds) => {
+    console.log(productIds)
+    const res = await axios.post(API_URL + '/order', {productIds}, {
+        headers: {
+            Authorization: localStorage.getItem('authToken')
+        }
+    });
+    store.dispatch({ 
+        type: 'BUY',
+        payload: res.data
+    });
+    console.log(res.data)
+    emptyCart()
 }
 ```
-### Servicio
-```
-deleteGenre(id: number, token): Observable<any> {
-    console.log(id);
-    return this.http.delete(environment.API_URL + `/generos/eliminar/${id}`, {
-        headers: {
-          Authorization: token
-        }
-      });
-  }
-```
-_En este otro pequeño código se procede a eliminar un género, esta claro que solo podrá realizarse siendo administrador el mismo, por lo que se accede al servicio enviando el id del género a eliminar y la autentifición adecuada para poder realizar dicha operación. Una vez llegado al servcio se envia a la bas de datos la información requerida, dicha en este caso el id por parametro y el token (autentifición)_
+_En este otro pequeño código se procede a la compra de los poductos se utuliza redux donde se hace un llamado a la base de datos y de esta forma es almacenado en una estado del redux pudiendo acceder a este posteriormente. Es enviado a la base de datos la información requerida en forma de objeto, la cual está contenida dentro de productIds y el token (autentifición), una vez finaliado esto se priocede a vaciar el carrito (la compra)_
 ### Instalación 🔧
 
 _No requiere de instalación ya que posteriormente se crearán aplicaciones para los diversos sistemas operativos, teniendo la compatibildad adecuada._
@@ -80,14 +82,72 @@ _Se realizó diversos filtros que fueron capaz de poner a prueba la aplicación 
 ### Importación 🔧 
 ```import 'antd/dist/antd.css'; ```
 
-## Contribuyendo 🖇️
-
-Por favor lee el [CONTRIBUTING.md](https://github.com/carlosalabau/GH-Proyecto1-Netflix-Backend/blob/master/README.md) para detalles de nuestro código de conducta, y el proceso para enviarnos pull requests.
-
-
-## Autores ✒️
-
-* **Giovanni Landaburo Del Arco** - *Trabajo Inicial* - [glandaburo](https://github.com/G1ovann16)
-
 ### BACKEND
 
+### Código a destacar
+``` 
+   insert(req, res) {
+        Product.create(req.body)
+            .then(product => res.status(201).send(product))
+            .catch(error => {
+                console.error(error);
+                res.send(error)
+            })
+    }
+ 
+``` 
+_En este pequeño se puede apreciar un controlador que inserta los productos en la base de datos dando como respuesta un estado 201 como satisfactorio y el producto creado._
+```
+const authentication = async(req, res, next) => {
+    
+        try {
+            const token = req.headers.authorization;
+            const payload = jwt.verify(token, 'la cambiare por seguridad');
+            const user = await UserModel.findOne({
+                _id: payload._id,
+                tokens: token
+            });
+            if (!user) {
+                return res.status(401).send({
+                    message: 'You are not authorized'
+                });
+            }
+            req.user = user;
+            next();
+        } catch (error) {
+            console.error(error)
+            res.status(401).send({
+                message: 'You are not authorized',
+                error
+            })
+        }
+    }
+```
+_Este codigo no es más que un middleware que valida la autentificación, es sumamente importante puesto que diversos controladores deben pasar por ella primero, puesto que los usuarios tiene limitados los privilegios, de esta maneras quedaría el sitio más seguro y le da más robustez a la aplicacion_
+
+## Construido con 🛠️
+
+
+* [MONGO] - _Es un sistema de base de datos NoSQL, orientado a documentos y de código abierto. Permite la creación de prácticamente todo el proyecto de backend. se procede a instalar las siguientes dependencias_.
+### Instalación 🔧    
+``` npm install 
+   "bcryptjs": "^2.4.3",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.12",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.3"
+ ```
+     
+## Contribuyendo 🖇️
+
+Por favor lee el [CONTRIBUTING.md](https://github.com/G1ovann16/E-Commerce/blob/master/README.md) para detalles de nuestro código de conducta, y el proceso para enviarnos pull requests.
+
+
+## Autor ✒️
+
+* **Giovanni Landaburo Del Arco** - *Trabajo Inicial* - [glandaburo](https://github.com/G1ovann16)
