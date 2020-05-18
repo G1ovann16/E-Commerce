@@ -27,12 +27,13 @@ function subValue(value) {
  
      <Card
         hoverable
-        style={{ width: 220 }}
+        style={{ width: 320 }}
         cover={
            <Link className="product" key={product._id} to={'/product/'+product._id}>
            <img src={product.image_path} alt="" />
             </Link>
-            }>
+            }
+            >
         <div className="date">
         <Col>{product.name}</Col>
         <Col>{product.price} €</Col>
@@ -56,7 +57,6 @@ function subValue(value) {
           </Link>
       }
         </div>
-        {/* <ShoppingCartOutlined onClick={()=>addCart(product)} /> */}
      </Card>
     
     )

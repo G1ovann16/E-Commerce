@@ -1,6 +1,32 @@
+
+@import '../../colors.scss';
 .product {
+    display: flex;
+    flex-direction: row;
     padding: 0.5em;
-    img {
-        max-width: 50vw;
+    margin-left: 4em;
+    .wraper{
+        margin: 4em 4em;
+        display: flex;
+        flex-direction: column;
+        Button {
+            background-color: $brown;
+            color: $darkyellow;
+            display: flex;
+            font-size: medium;
+            justify-content: space-around;
+            flex-direction: row;
+            position: absolute;
+            bottom: 10em;
+            &:hover{
+                background-color: $darkyellow;
+                color: $lightyellow;
+            }
+        }
+    }
+    
+    span{
+        font-size: 2em;
+
     }
 }

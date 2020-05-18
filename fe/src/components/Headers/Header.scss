@@ -14,21 +14,31 @@
         display: flex;
     }
     .userZone{
-        margin: 1em 8em 2em 0;
+        display: flex;
+        position: relative;
+        width: 40em;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        margin: 0 8em 2em 0;
         Button {
             background-color: $brown;
             color: $darkyellow;
-            margin-left: 1em;
             display: flex;
+            font-size: medium;
             justify-content: space-around;
             flex-direction: row;
-            width: 15em;
+            width: 20em;
+            position: absolute;
+            top: 0em;
             height: 3em;
             &:hover{
                 background-color: $darkyellow;
                 color: $lightyellow;
             }
         }
+        // span{
+        //     margin-left: 10em;
+        // }
     }
     a {
         all: unset;

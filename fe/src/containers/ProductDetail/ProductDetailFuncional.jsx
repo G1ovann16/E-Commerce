@@ -45,15 +45,16 @@ const ProductDetailFuncional = props => {
   
         
         <img src={productoactual?.image_path} alt="" />
-        <div className="detail">
-            <span>{productoactual?.price}€</span>
-            <span>{productoactual?.stock} unidades</span>
-            <span>{productoactual?.name}</span>
-            <span>{productoactual?.description}</span>
-        </div>
+       <div className="wraper">
+
+            <span>{productoactual?.name}</span><br/>
+            <span>{productoactual?.price}€</span><br/>
+            <span>{productoactual?.stock} unidades</span><br/>
         <Button type="primary" disabled={active} onClick={()=>{addProductoToCart(productoactual)}} htmlType="submit">
-        <NavLink to="/cesta" exact>AddCar</NavLink>
+        <NavLink to="/cesta" exact>ADD PRODUCT</NavLink>
         </Button>
+       </div>
+            <span>Overvierw: <br/> {productoactual?.description}</span><br/>
     </div> )
 }
 const mapStateToProps = (state) => ({ products: state.products, product_cart: state.product_cart  })

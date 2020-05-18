@@ -17,14 +17,14 @@ const Shop = (props) => {
   function handleRadio(e){
     console.log(props.productsRec)
     setValueRadio(e.target.value)
-      // if ((e.target.value) == 1) {
-      //   props.products.sort((a, b) => a.price - b.price)
-      //   console.log(props.products,'menor')
-      // }
-      // else if((e.target.value) == 2) {
-      //   props.products.sort((a, b) => b.price - a.price)
-      //   console.log(props.products,'mayor')
-      // }
+      if ((e.target.value) == 1) {
+        props.products.sort((a, b) => a.price - b.price)
+        console.log(props.products,'menor')
+      }
+      else if((e.target.value) == 2) {
+        props.products.sort((a, b) => b.price - a.price)
+        console.log(props.products,'mayor')
+      }
     
   }
 

@@ -6,11 +6,11 @@ img{
 .date{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    // justify-content: center;
 
 }
-}
-Button {
+
+button {
     background-color: $brown;
     color: $darkyellow;
     &:hover{
@@ -18,5 +18,6 @@ Button {
         background-color: $darkyellow;
         color: $lightyellow;
     }
-
+    
+}
 }
