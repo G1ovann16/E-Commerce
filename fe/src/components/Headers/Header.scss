@@ -19,6 +19,11 @@
             background-color: $brown;
             color: $darkyellow;
             margin-left: 1em;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row;
+            width: 15em;
+            height: 3em;
             &:hover{
                 background-color: $darkyellow;
                 color: $lightyellow;

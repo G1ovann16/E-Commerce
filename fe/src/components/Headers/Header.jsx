@@ -35,10 +35,11 @@ return (
                     <NavLink to="/" onClick={logout} >Logout</NavLink>
                     <NavLink to="/cesta" exact>
                         <div className="col-8 carrito">
-                              <Button type="primary" icon={<ShoppingCartOutlined />}>
-                              <p>{cantUnit} $</p>  
-                            <p>{resultado} $</p>
-                         </Button>
+                            <Button 
+                            type="primary" icon={<ShoppingCartOutlined />}>
+                              <p>Quantity  {cantUnit}</p>  
+                              <p>Total  {resultado} $</p>
+                            </Button>
                          </div>         
                     </NavLink>
                 </div> 
