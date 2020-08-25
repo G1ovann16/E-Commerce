@@ -1,10 +1,7 @@
   ### FRONTEND
 ## Comenzando 🚀
 
-_El presente proyecto está enfocado al público; el mismo se tratará de un ECOMERCE-PET que permitirá visualizar los productos y/o ascesorios de caninos, actores y una minuciosa búsqueda por título. Para ello hemos realizado diversas pestañas donde el usuario le sera fácil desplazarse, propiciandole nuevas promociones y estará actualizándose con los productos recientemente agregados._
-
-Mira **Deployment** para conocer como desplegar el proyecto.
-
+_El presente proyecto está enfocado al público; el mismo se tratará de un ECOMERCE-PET que permitirá visualizar los productos y/o ascesorios de caninos, donde encontrará una minuciosa búsqueda por título. Para ello hemos realizado diversas pestañas donde el usuario le sera fácil desplazarse, propiciandole nuevas promociones y estará actualizándose con los productos recientemente agregados._
 
 ### Pre-requisitos 📋
 
